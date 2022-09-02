@@ -35,7 +35,6 @@ class Transaction extends Model
 //        return $this->belongsTo(User::class);
 //    }
 
-
     // Mutator for Name column
     // when "name" will save, it will convert into lowercase
     public function getStatusCode($value)
