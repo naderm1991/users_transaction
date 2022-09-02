@@ -29,16 +29,4 @@ class Transaction extends Model
     protected $casts = [
         'status_code' => StatusName::class,
     ];
-
-//    public function user(): BelongsTo
-//    {
-//        return $this->belongsTo(User::class);
-//    }
-
-    // Mutator for Name column
-    // when "name" will save, it will convert into lowercase
-    public function getStatusCode($value)
-    {
-        $this->attributes['status_code'] = 133;
-    }
 }
