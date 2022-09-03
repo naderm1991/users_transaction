@@ -12,6 +12,7 @@ class UserController extends Controller
     public function index(UserRequest $request,UserFilter $userFilters): \Illuminate\Http\JsonResponse
     {
         $userFilters = $userFilters->filters;
+
         if (empty($userFilters)){
             $users = User::with('transactions')->get();
             return response()->json([
@@ -28,7 +29,6 @@ class UserController extends Controller
                     $query->where($filter['column'],$filter['operator'] ,$filter['value']);
             }
         }];
-
         $users = User::with($transactions_filter)->get();
 
         return response()->json([

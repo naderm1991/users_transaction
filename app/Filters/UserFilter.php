@@ -8,10 +8,16 @@ class UserFilter
 {
     public array $filters = [];
 
+    public const CODES = [
+        "authorized"=>"1",
+        "decline"=>"2",
+        "refunded"=>"3"
+    ];
+
     public function __construct(Request $request){
 
         if($request->status_code){
-            $this->filters[] = ["column"=>"status_code" , "operator"=>"=" , "value" => $request->status_code];
+            $this->filters[] = ["column"=>"status_code" , "operator"=>"=" , "value" => self::CODES[$request->status_code]];
         }
 
         if($request->currency){
