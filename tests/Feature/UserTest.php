@@ -44,7 +44,7 @@ class UserTest extends TestCase
         }
     }
 
-    public function test_that_validation_work_if_item_is_missing_from_the_data_range(){
+    public function test_that_validation_work_if_item_is_missing_from_range_filters(){
         $arr = array(
             "date_range"=>[
                 "from"=>"2021-01-01"
@@ -56,5 +56,15 @@ class UserTest extends TestCase
         $responseItem = $response->json();
         $this->assertSame($responseItem['errors']['date_range'][0], "The date range must contain 2 items.");
 
+        $arr = array(
+            "amount_range"=>[
+                "from"=>"1"
+            ]
+        );
+        $response = $this->get('api/users?'.http_build_query($arr));
+
+        $response->assertStatus(200);
+        $responseItem = $response->json();
+        $this->assertSame($responseItem['errors']['amount_range'][0], "The amount range must contain 2 items.");
     }
 }
