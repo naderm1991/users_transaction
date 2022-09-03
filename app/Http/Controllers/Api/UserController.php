@@ -11,7 +11,8 @@ class UserController extends Controller
 {
     public function index(UserRequest $request,UserFilter $userFilters): \Illuminate\Http\JsonResponse
     {
-        if (empty($userfilters->filters)){
+        $userFilters = $userFilters->filters;
+        if (empty($userFilters)){
             $users = User::with('transactions')->get();
             return response()->json([
                 'status'=> "success",
