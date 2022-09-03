@@ -24,7 +24,8 @@ class UserRequest extends FormRequest
             'date_range'      => 'nullable|array|size:2',
             'date_range.from' => 'required_with:date_range',
             'date_range.to' => 'required_with:date_range',
-            'status_code'=> 'in:authorized,decline,refunded'
+            'status_code'=> 'in:authorized,decline,refunded',
+            'currency'=> 'size:3'
         ];
     }
 
